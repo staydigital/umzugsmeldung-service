@@ -1,0 +1,18 @@
+<div class="form-group">
+ <label for="addrInputStrasse">Strasse</label>
+ <input type="text" class="form-control" id="addrInputStrasse" ng-model="$ctrl.adresse.strasse" aria-describedby="addrInputStrasseHelp" placeholder="Musterstraße 12">
+ <small id="addrInputStrasseHelp" class="form-text text-muted">Strasse inklusive Hausnummer, z.b.: Roter Ring 25a</small>
+</div>
+<div class="form-group">
+ <label for="addrInputPostleitzahl">Postleitzahl</label>
+ <input type="text" class="form-control" id="addrInputPostleitzahl" ng-model="$ctrl.adresse.postleitzahl" placeholder="12345">
+</div>
+<div class="form-group">
+    <label for="addrInputOrt">Ort</label>
+    <input type="text" class="form-control" id="addrInputOrt" ng-model="$ctrl.adresse.ort" placeholder="Musterstad">
+</div>
+<div class="form-group">
+    <label for="addrInputLand">Land</label>
+    <input type="text" class="form-control" id="addrInputLand" ng-model="$ctrl.adresse.landIsoCode" placeholder="Deutschland">
+</div>
+<button ng-click="$ctrl.create()">Anlegen</button>

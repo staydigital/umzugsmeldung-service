@@ -1,0 +1,4 @@
+<input type="text" ng-model="searchBox"/>
+<li ng-repeat="vn in vns | filter: searchBox">
+    {{ vn.nachname + ', ' + vn.vorname }}
+</li>

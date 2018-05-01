@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0qz6gbr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.13.1">
+  <bpmn:process id="UmzugMeldenOth" name="UmzugMelden" isExecutable="true">
+    <bpmn:startEvent id="StartEvent">
+      <bpmn:outgoing>SequenceFlow_158n4vz</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="UserTask_UmzugsadresseErfassen" name="Umzugsadresse erfassen">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="PartnerId">342</camunda:inputParameter>
+          <camunda:outputParameter name="Aenderungsgrund">Umzug</camunda:outputParameter>
+          <camunda:outputParameter name="GueltigAb">01.01.2018</camunda:outputParameter>
+          <camunda:outputParameter name="AdresseIdAlt">56465</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_158n4vz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dosog0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Srv_BeratungsanlassErstellen" name="Beratungsanlass erstellen (Umzug)" camunda:delegateExpression="${beratungsanlassErstellen}">
+      <bpmn:incoming>SequenceFlow_0dosog0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1tybvsc</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent">
+      <bpmn:incoming>SequenceFlow_1n650zq</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_158n4vz" sourceRef="StartEvent" targetRef="UserTask_UmzugsadresseErfassen" />
+    <bpmn:sequenceFlow id="SequenceFlow_0dosog0" sourceRef="UserTask_UmzugsadresseErfassen" targetRef="Srv_BeratungsanlassErstellen" />
+    <bpmn:serviceTask id="Srv_VertraegeSuchen" name="Verträge suchen" camunda:delegateExpression="${vertraegeSuchen}">
+      <bpmn:incoming>SequenceFlow_1tybvsc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1dchum1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1tybvsc" sourceRef="Srv_BeratungsanlassErstellen" targetRef="Srv_VertraegeSuchen" />
+    <bpmn:subProcess id="SubProcess_1reto0y">
+      <bpmn:incoming>SequenceFlow_1dchum1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1n650zq</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="${vertraegeIds}" camunda:elementVariable="${vertraege}" />
+      <bpmn:startEvent id="SubStartEvent">
+        <bpmn:outgoing>SequenceFlow_03r7ezg</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:endEvent id="SubEndEvent">
+        <bpmn:incoming>SequenceFlow_03r7ezg</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="SequenceFlow_03r7ezg" sourceRef="SubStartEvent" targetRef="SubEndEvent" />
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_1dchum1" sourceRef="Srv_VertraegeSuchen" targetRef="SubProcess_1reto0y" />
+    <bpmn:sequenceFlow id="SequenceFlow_1n650zq" sourceRef="SubProcess_1reto0y" targetRef="EndEvent" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="UmzugMeldenOth">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_05diz6n_di" bpmnElement="UserTask_UmzugsadresseErfassen">
+        <dc:Bounds x="241" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0vfalng_di" bpmnElement="Srv_BeratungsanlassErstellen">
+        <dc:Bounds x="394" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0y16k1o_di" bpmnElement="EndEvent">
+        <dc:Bounds x="1089" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1062" y="142" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_158n4vz_di" bpmnElement="SequenceFlow_158n4vz">
+        <di:waypoint x="209" y="120" />
+        <di:waypoint x="241" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="225" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0dosog0_di" bpmnElement="SequenceFlow_0dosog0">
+        <di:waypoint x="341" y="120" />
+        <di:waypoint x="394" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="367.5" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1jubonv_di" bpmnElement="Srv_VertraegeSuchen">
+        <dc:Bounds x="545" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1tybvsc_di" bpmnElement="SequenceFlow_1tybvsc">
+        <di:waypoint x="494" y="120" />
+        <di:waypoint x="545" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="519.5" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_1reto0y_di" bpmnElement="SubProcess_1reto0y" isExpanded="true">
+        <dc:Bounds x="707" y="20" width="350" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1dchum1_di" bpmnElement="SequenceFlow_1dchum1">
+        <di:waypoint x="645" y="120" />
+        <di:waypoint x="707" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="676" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1n650zq_di" bpmnElement="SequenceFlow_1n650zq">
+        <di:waypoint x="1057" y="120" />
+        <di:waypoint x="1089" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1073" y="99" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_08252ui_di" bpmnElement="SubStartEvent">
+        <dc:Bounds x="727" y="98" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="745" y="138" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0ptmmz4_di" bpmnElement="SubEndEvent">
+        <dc:Bounds x="997" y="98" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1015" y="138" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03r7ezg_di" bpmnElement="SequenceFlow_03r7ezg">
+        <di:waypoint x="763" y="116" />
+        <di:waypoint x="997" y="116" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="880" y="95" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
