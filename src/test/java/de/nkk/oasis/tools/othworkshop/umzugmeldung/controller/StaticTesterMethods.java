@@ -17,7 +17,7 @@ class StaticTesterMethods {
         Adresse addr = new Adresse();
         addr.setStrasse(strasse);
         addr.setPlz(plz);
-        addr.setWohnort(wohnort);
+        addr.setOrt(wohnort);
         addr.setLand(land);
         return addr;
     }
@@ -58,7 +58,7 @@ class StaticTesterMethods {
     static void assertAdresse(final Adresse rraddr, final Adresse addr) {
         Assertions.assertThat(rraddr.getStrasse()).isEqualTo(addr.getStrasse());
         Assertions.assertThat(rraddr.getPlz()).isEqualTo(addr.getPlz());
-        Assertions.assertThat(rraddr.getWohnort()).isEqualTo(addr.getWohnort());
+        Assertions.assertThat(rraddr.getOrt()).isEqualTo(addr.getOrt());
         Assertions.assertThat(rraddr.getLand()).isEqualTo(addr.getLand());
     }
 

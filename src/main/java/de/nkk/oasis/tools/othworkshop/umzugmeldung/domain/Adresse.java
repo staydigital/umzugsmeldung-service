@@ -16,7 +16,7 @@ public class Adresse {
 
     private String plz;
 
-    private String wohnort;
+    private String ort;
 
     private String land;
 }

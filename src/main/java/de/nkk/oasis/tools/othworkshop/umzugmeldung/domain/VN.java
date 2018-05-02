@@ -14,6 +14,7 @@ public class VN {
     private Long id;
     private String vorname;
     private String nachname;
+    private String kundennummer;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
