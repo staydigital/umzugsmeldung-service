@@ -6,7 +6,8 @@ import javax.persistence.Embeddable;
 
 @Data
 @Embeddable
-public class VertragLV {
+public class VertragUnfall {
 
-    private Long deckungsSummeLV;
+	private Long deckungsSummeUnfall;
+
 }

@@ -22,5 +22,16 @@ public class Vertrag {
     private VertragLV lV;
 
     @Embedded
-    private VertragPkw pkw;
+    private VertragKfz kfz;
+
+    @Embedded
+    private VertragHausrat hausrat;
+
+    @Embedded
+    private VertragUnfall unfall;
+
+    @Embedded
+    private VertragHaftpflicht haftpflicht;
+
+    private String activityId;
 }

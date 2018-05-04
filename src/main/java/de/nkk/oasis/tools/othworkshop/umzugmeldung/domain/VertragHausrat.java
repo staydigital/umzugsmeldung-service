@@ -6,7 +6,9 @@ import javax.persistence.Embeddable;
 
 @Data
 @Embeddable
-public class VertragLV {
+public class VertragHausrat {
 
-    private Long deckungsSummeLV;
+	private Integer quadratMeter;
+
+	private Boolean glasVersichert;
 }

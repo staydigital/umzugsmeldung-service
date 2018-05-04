@@ -2,10 +2,8 @@ package de.nkk.oasis.tools.othworkshop.umzugmeldung.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,4 +16,5 @@ public class Umzugsmeldung {
     private Long vnId;
 
     private Long adresseId;
+
 }

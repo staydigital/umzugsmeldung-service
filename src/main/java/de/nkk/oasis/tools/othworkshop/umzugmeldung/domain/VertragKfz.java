@@ -6,7 +6,9 @@ import javax.persistence.Embeddable;
 
 @Data
 @Embeddable
-public class VertragPkw {
+public class VertragKfz {
 
-    private String pkwProp;
+    private String kennzeichen;
+
+    private Boolean tiefgarageVorhanden;
 }

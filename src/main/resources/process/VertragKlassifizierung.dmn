@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="definitions_18tofvu" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="VertragKlassifizierung" name="VertragKlassifizierung">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable" hitPolicy="FIRST">
+      <input id="input1" label="sparte" camunda:inputVariable="">
+        <inputExpression id="inputExpression1" typeRef="string">        <text>sparte</text>
+</inputExpression>
+      </input>
+      <output id="output1" label="risikoGefunden" name="risikoGefunden" typeRef="boolean" />
+      <rule id="row-925686099-4">
+        <inputEntry id="UnaryTests_1mdfp5u">        <text><![CDATA["Kfzversicherung"]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_149y7jh">        <text>true</text>
+</outputEntry>
+      </rule>
+      <rule id="row-925686099-5">
+        <inputEntry id="UnaryTests_05zaukh">        <text><![CDATA["Lebensversicherung"]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0fk45wu">        <text>false</text>
+</outputEntry>
+      </rule>
+      <rule id="row-925686099-6">
+        <inputEntry id="UnaryTests_10tw1tn">        <text><![CDATA["Unfallversicherung"]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0fi6qgr">        <text>false</text>
+</outputEntry>
+      </rule>
+      <rule id="row-925686099-3">
+        <inputEntry id="UnaryTests_1r54a96">        <text><![CDATA["Hausratversicherung"]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0qiavlb">        <text>true</text>
+</outputEntry>
+      </rule>
+      <rule id="row-925686099-7">
+        <inputEntry id="UnaryTests_1brrsud">        <text><![CDATA["Haftpflichtversicherung"]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0kzaqtw">        <text>false</text>
+</outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
