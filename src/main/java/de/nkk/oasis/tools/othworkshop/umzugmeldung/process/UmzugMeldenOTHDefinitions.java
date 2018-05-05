@@ -1,8 +1,6 @@
 package de.nkk.oasis.tools.othworkshop.umzugmeldung.process;
 
-import de.nkk.oasis.tools.othworkshop.umzugmeldung.domain.Umzugsmeldung;
-import de.nkk.oasis.tools.othworkshop.umzugmeldung.domain.VN;
-import de.nkk.oasis.tools.othworkshop.umzugmeldung.domain.VNRepository;
+import de.nkk.oasis.tools.othworkshop.umzugmeldung.domain.*;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.TaskService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -25,6 +23,9 @@ public class UmzugMeldenOTHDefinitions {
 
 
     @Autowired private VNRepository vnRepository;
+
+    @Autowired private BeratungsprotokollRepository beratungsprotokollRepository;
+
 
     public static final String PROCESSKEY = "UmzugMeldenOth";
     public static final String STARTEVENT = "StartEvent";
@@ -57,9 +58,11 @@ public class UmzugMeldenOTHDefinitions {
         runtimeService.startProcessInstanceByKey(PROCESSKEY, vn.getKundennummer(), vars);
     }
 
-    public void completeTask(String taskId) {
-        Task task = this.taskService.createTaskQuery().taskId(taskId).singleResult();
+    public void completeTask(Vertrag vertrag) {
+        Task task = this.taskService.createTaskQuery().processInstanceId(vertrag.getActivityId()).singleResult();
         taskService.complete(task.getId());
+
+        beratungsprotokollRepository.deleteByVertragId(vertrag.getId());
     }
 
 }

@@ -12,7 +12,7 @@ public interface VertragRepository extends JpaRepository<Vertrag, Long> {
 	default Vertrag save(Vertrag var1) {
 		ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
 		UmzugMeldenOTHDefinitions umzugMeldenOTHDefinitions = ctx.getBean(UmzugMeldenOTHDefinitions.class);
-		//umzugMeldenOTHDefinitions.completeTask(var1.getActivityId());
+		umzugMeldenOTHDefinitions.completeTask(var1);
 		var1.setActivityId(null);
 		Vertrag vertrag = this.saveAndFlush(var1);
 		return this.getOne(vertrag.getId());
