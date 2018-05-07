@@ -21,6 +21,8 @@ public class UmzugMeldenOTHDefinitions {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private AdresseRepository adresseRepository;
 
     @Autowired private VNRepository vnRepository;
 
@@ -65,4 +67,31 @@ public class UmzugMeldenOTHDefinitions {
         beratungsprotokollRepository.deleteByVertragId(vertrag.getId());
     }
 
+    public void mockUmzug() {
+
+        List<VN> vns = vnRepository.findAll();
+
+        List<Adresse> adressen = adresseRepository.findAll();
+        for (int i = 0; i <= 10; i++) {
+            for (VN vn : vns) {
+                for (Adresse adresse : adressen) {
+                    Map<String, Object> vars = new HashMap<>();
+                    vars.put("vnId", vn.getId());
+                    vars.put("adresseId", adresse.getId());
+
+                    runtimeService.startProcessInstanceByKey(PROCESSKEY, vn.getKundennummer(), vars);
+                }
+            }
+        }
+
+        List<Task> tasks = this.taskService.createTaskQuery().processDefinitionKey(VertragHandlingOTHDefinitions.PROCESSKEY).active().list();
+        for (Task task : tasks) {
+            taskService.complete(task.getId());
+        }
+
+        List<Beratungsprotokoll> protokolle = beratungsprotokollRepository.findAll();
+        for (Beratungsprotokoll protokoll : protokolle) {
+            beratungsprotokollRepository.delete(protokoll);
+        }
+    }
 }

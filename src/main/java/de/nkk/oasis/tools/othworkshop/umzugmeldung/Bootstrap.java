@@ -87,13 +87,37 @@ public class Bootstrap implements InitializingBean {
 	}
 
 	private void doInitialData() {
-		createVN("Stefan", "Wittmann", "X001", createAdresse("Böhmerwaldstraße 13", "93057", "Regensburg", "Deutschland"),
-				Arrays.asList(createHausrat("WS001", true, 120),
-						createLVVertrag("WS002", 150000L),
-						createHaftpflicht("WS003", 75000L),
-						createKfz("WS004", "R-A 923", true),
-						createUnfallversicherung("WS005", 98000L)));
-		createVN("Max", "Mustermann", "Y001", createAdresse("Musterweg 25", "12345", "Musterstadt", "Deutschland"), Arrays.asList(createLVVertrag("JDK084", 120000L)));
+		createVN("Huber", "Michael", "HM200078001", createAdresse("Böhmerwaldstraße 13", "93057", "Regensburg", "Deutschland"),
+				Arrays.asList(createHausrat("HMHS001", true, 120),
+						createLVVertrag("HMLV001", 150000L),
+						createHaftpflicht("HMHF001", 75000L),
+						createKfz("HMKFZ001", "R-A 923", true),
+						createUnfallversicherung("HMUNF001", 98000L)));
+		createVN("Flieder", "Anton", "FA200078002", createAdresse("Lupburger Str. 24", "92331", "Parsberg", "Deutschland"),
+				Arrays.asList(createHausrat("FAHS001", true, 120),
+						createLVVertrag("FALV001", 150000L),
+						createHaftpflicht("FAHF001", 75000L),
+						createKfz("FAKFZ001", "P-X 528", true),
+						createUnfallversicherung("FAUNF001", 98000L)));
+		createVN("Pressl", "Veronika", "PV200078002", createAdresse("Ritter-Haug-Str. 2", "92331", "Parsberg", "Deutschland"),
+				Arrays.asList(createHausrat("PVHS001", true, 120),
+						createLVVertrag("PVLV001", 150000L),
+						createHaftpflicht("PVHF001", 75000L),
+						createKfz("PVKFZ001", "P-AC 1024", true),
+						createUnfallversicherung("PVUNF001", 98000L)));
+		createVN("Lößnitz", "Marita", "LM200078002", createAdresse("Riesengebirgsstr. 56", "93073", "Neutraubling", "Deutschland"),
+				Arrays.asList(createHausrat("LMHS001", true, 120),
+						createLVVertrag("LMLV001", 150000L),
+						createHaftpflicht("LMHF001", 75000L),
+						createKfz("LMKFZ001", "R-JK 343", true),
+						createUnfallversicherung("LMUNF001", 98000L)));
+		createVN("Schwarzer", "Thorsten", "ST200078002", createAdresse("Pfarrer-Graf-Str. 4", "93133", "Burglengenfeld", "Deutschland"),
+				Arrays.asList(createHausrat("STHS001", true, 120),
+						createLVVertrag("STLV001", 150000L),
+						createHaftpflicht("STHF001", 75000L),
+						createKfz("STKFZ001", "R-JK 343", true),
+						createUnfallversicherung("STUNF001", 98000L)));
+
 	}
 
 	@Override public void afterPropertiesSet() throws Exception {
